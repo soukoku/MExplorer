@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         x:Name="theWindow"
         DataContext="{StaticResource Shell}"
+        Icon="{Binding SelectedContainer.MediumIcon}"
         Title="{Binding ElementName=theTree, Path=SelectedItem, Converter={StaticResource AppTitleConv}}" 
         Height="600" Width="900">
     <Grid>

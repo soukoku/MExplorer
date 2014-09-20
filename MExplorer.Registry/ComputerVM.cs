@@ -1,4 +1,5 @@
-﻿using Microsoft.Win32;
+﻿using MExplorer.Registry.Assets;
+using Microsoft.Win32;
 using Microsoft.WindowsAPICodePack.Shell;
 using System;
 using System.Collections.Generic;
@@ -16,27 +17,27 @@ namespace MExplorer.Registry
         {
             IsRemote = !string.IsNullOrEmpty(machine);
 
-            using (var kf = KnownFolders.Computer)
-            {
-                _shell = ShellObject.FromParsingName(kf.ParsingName);
-                _shell.Thumbnail.CurrentSize = new System.Windows.Size(16, 16);
-            }
+            //using (var kf = KnownFolders.Computer)
+            //{
+            //    _shell = ShellObject.FromParsingName(kf.ParsingName);
+            //    _shell.Thumbnail.CurrentSize = new System.Windows.Size(16, 16);
+            //}
         }
 
-        ShellObject _shell;
+        //ShellObject _shell;
 
         protected override ImageSource GetIcon(IconSize size)
         {
             switch (size)
             {
-                case IconSize.ExtraLarge:
-                    return _shell.Thumbnail.LargeBitmapSource;
-                case IconSize.Large:
-                    return _shell.Thumbnail.MediumBitmapSource;
+                //case IconSize.ExtraLarge:
+                //    return _shell.Thumbnail.LargeBitmapSource;
+                //case IconSize.Large:
+                //    return _shell.Thumbnail.MediumBitmapSource;
                 case IconSize.Medium:
-                    return _shell.Thumbnail.SmallBitmapSource;
+                    return ImageAssets.RegistryMedium;
                 case IconSize.Small:
-                    return _shell.Thumbnail.BitmapSource;
+                    return ImageAssets.RegistrySmall;
             }
             return null;
         }
@@ -53,15 +54,15 @@ namespace MExplorer.Registry
 
         public override bool IncludeContainersInAll { get { return false; } }
 
-        protected override void OnDisposeManaged()
-        {
-            if (_shell != null)
-            {
-                _shell.Dispose();
-                _shell = null;
-            }
-            base.OnDisposeManaged();
-        }
+        //protected override void OnDisposeManaged()
+        //{
+        //    if (_shell != null)
+        //    {
+        //        _shell.Dispose();
+        //        _shell = null;
+        //    }
+        //    base.OnDisposeManaged();
+        //}
 
     }
 }

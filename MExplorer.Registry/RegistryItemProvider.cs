@@ -28,7 +28,7 @@ namespace MExplorer.Registry
             {
                 foreach (var name in k.Key.GetValueNames())
                 {
-                    list.Add(new ValueVM(k.Provider, k, name));
+                    list.Add(new ValueVM(k.Provider, k, name, k.Key.GetValueKind(name)));
                 }
             }
 

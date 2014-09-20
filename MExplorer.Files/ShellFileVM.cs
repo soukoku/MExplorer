@@ -9,39 +9,39 @@ namespace MExplorer.Files
 {
     class ShellFileVM : ItemVM
     {
-        public ShellFileVM(IItemProvider provider, ContainerVM parent, string parsingName)
-            : base(provider, parent, GetName(parsingName), false)
+        public ShellFileVM(IItemProvider provider, ContainerVM parent, ShellFile file)
+            : base(provider, parent, file.GetDisplayName(DisplayNameType.Default), false)
         {
-            ParsingName = parsingName;
+            File = file;
         }
 
-        public string ParsingName { get; private set; }
+        public ShellFile File { get; private set; }
 
-        private static string GetName(string parsingName)
-        {
-            using (var sh = ShellObject.FromParsingName(parsingName))
-            {
-                return sh.GetDisplayName(DisplayNameType.Default);
-            }
-        }
         protected override ImageSource GetIcon(IconSize size)
         {
-            using (var shell = ShellObject.FromParsingName(ParsingName))
+            File.Thumbnail.CurrentSize = new System.Windows.Size(16, 16);
+            switch (size)
             {
-                shell.Thumbnail.CurrentSize = new System.Windows.Size(16, 16);
-                switch (size)
-                {
-                    case IconSize.ExtraLarge:
-                        return shell.Thumbnail.LargeBitmapSource;
-                    case IconSize.Large:
-                        return shell.Thumbnail.MediumBitmapSource;
-                    case IconSize.Medium:
-                        return shell.Thumbnail.SmallBitmapSource;
-                    case IconSize.Small:
-                        return shell.Thumbnail.BitmapSource;
-                }
+                case IconSize.ExtraLarge:
+                    return File.Thumbnail.LargeBitmapSource;
+                case IconSize.Large:
+                    return File.Thumbnail.MediumBitmapSource;
+                case IconSize.Medium:
+                    return File.Thumbnail.SmallBitmapSource;
+                case IconSize.Small:
+                    return File.Thumbnail.BitmapSource;
             }
             return null;
+        }
+
+        protected override void OnDisposeManaged()
+        {
+            if (File != null)
+            {
+                File.Dispose();
+                File = null;
+            }
+            base.OnDisposeManaged();
         }
     }
 }
