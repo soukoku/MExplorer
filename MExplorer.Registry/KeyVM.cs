@@ -33,6 +33,16 @@ namespace MExplorer.Registry
             }
         }
 
+        MetaColumnInfo[] _meta = new MetaColumnInfo[] { RegistryMetaData.Type, RegistryMetaData.Data };
+
+        public override IEnumerable<MetaColumnInfo> KnownMetaData
+        {
+            get
+            {
+                return _meta;
+            }
+        }
+
         //public string GetKeyPath
         //{
         //    get

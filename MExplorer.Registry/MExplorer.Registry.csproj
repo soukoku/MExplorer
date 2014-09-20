@@ -72,6 +72,7 @@
   <ItemGroup>
     <Compile Include="Assets\ImageAssets.cs" />
     <Compile Include="ComputerVM.cs" />
+    <Compile Include="RegistryMetaData.cs" />
     <Compile Include="KeyVM.cs" />
     <Compile Include="RegistryItemProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

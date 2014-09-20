@@ -23,12 +23,13 @@ namespace MExplorer.Registry
         {
             var list = new List<ItemVM>();
 
-            var k = container as KeyVM;
-            if (k != null)
+            var vm = container as KeyVM;
+            if (vm != null)
             {
-                foreach (var name in k.Key.GetValueNames())
+                var key = vm.Key;
+                foreach (var name in key.GetValueNames())
                 {
-                    list.Add(new ValueVM(k.Provider, k, name, k.Key.GetValueKind(name)));
+                    list.Add(new ValueVM(vm.Provider, vm, name, key.GetValueKind(name), key.GetValue(name, null, RegistryValueOptions.DoNotExpandEnvironmentNames)));
                 }
             }
 
