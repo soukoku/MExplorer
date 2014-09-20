@@ -1,0 +1,11 @@
+﻿<Application x:Class="MExplorer.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:MExplorer.ViewModels"
+             xmlns:conv="clr-namespace:MExplorer.Converters"
+             StartupUri="ShellWindow.xaml">
+    <Application.Resources>
+        <vm:ShellVM x:Key="Shell"></vm:ShellVM>
+        <conv:AppTitleConverter x:Key="AppTitleConv"></conv:AppTitleConverter>
+    </Application.Resources>
+</Application>
