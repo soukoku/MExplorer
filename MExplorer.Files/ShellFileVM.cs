@@ -13,25 +13,14 @@ namespace MExplorer.Files
             : base(provider, parent, file.GetDisplayName(DisplayNameType.Default), false)
         {
             File = file;
+            Util.FillCommonData(file, MetaData);
         }
 
         public ShellFile File { get; private set; }
 
         protected override ImageSource GetIcon(IconSize size)
         {
-            File.Thumbnail.CurrentSize = new System.Windows.Size(16, 16);
-            switch (size)
-            {
-                case IconSize.ExtraLarge:
-                    return File.Thumbnail.LargeBitmapSource;
-                case IconSize.Large:
-                    return File.Thumbnail.MediumBitmapSource;
-                case IconSize.Medium:
-                    return File.Thumbnail.SmallBitmapSource;
-                case IconSize.Small:
-                    return File.Thumbnail.BitmapSource;
-            }
-            return null;
+            return Util.GetIcon(File, size);
         }
 
         protected override void OnDisposeManaged()

@@ -57,6 +57,7 @@
       <HintPath>..\packages\Microsoft.WindowsAPICodePack-Shell.1.1.0.0\lib\Microsoft.WindowsAPICodePack.ShellExtensions.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net" />
@@ -75,9 +76,11 @@
       <Link>Properties\VersionInfo.cs</Link>
     </Compile>
     <Compile Include="FileSystemItemProvider.cs" />
+    <Compile Include="FileMetaData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShellFileVM.cs" />
     <Compile Include="ShellFolderVM.cs" />
+    <Compile Include="Util.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MExplorer.Core\MExplorer.Core.csproj">

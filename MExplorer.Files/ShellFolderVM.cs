@@ -14,6 +14,7 @@ namespace MExplorer.Files
             : base(provider, parent, folder.GetDisplayName(DisplayNameType.Default), false)
         {
             Folder = folder;
+            Util.FillCommonData(folder, MetaData);
         }
 
         public ShellFolder Folder { get; private set; }
@@ -54,19 +55,22 @@ namespace MExplorer.Files
 
         protected override ImageSource GetIcon(IconSize size)
         {
-            Folder.Thumbnail.CurrentSize = new System.Windows.Size(16, 16);
-            switch (size)
+            return Util.GetIcon(Folder, size);
+        }
+
+        static MetaColumnInfo[] _metas = new MetaColumnInfo[] { 
+            FileMetaData.ModifiedDate,
+            FileMetaData.Type,
+            FileMetaData.Size,
+        };
+
+
+        public override IEnumerable<MetaColumnInfo> KnownMetaData
+        {
+            get
             {
-                case IconSize.ExtraLarge:
-                    return Folder.Thumbnail.LargeBitmapSource;
-                case IconSize.Large:
-                    return Folder.Thumbnail.MediumBitmapSource;
-                case IconSize.Medium:
-                    return Folder.Thumbnail.SmallBitmapSource;
-                case IconSize.Small:
-                    return Folder.Thumbnail.BitmapSource;
+                return _metas;
             }
-            return null;
         }
 
         protected override void OnDisposeManaged()

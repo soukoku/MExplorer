@@ -19,6 +19,7 @@ namespace MExplorer
             Parent = parent;
             _name = name;
             CanRename = canRename;
+            MetaData = new MetaData();
         }
 
         public IItemProvider Provider { get; private set; }
@@ -67,6 +68,8 @@ namespace MExplorer
                 RaisePropertyChanged(() => IsRenaming);
             }
         }
+
+        public MetaData MetaData { get; private set; }
 
         protected virtual ImageSource GetIcon(IconSize size)
         {

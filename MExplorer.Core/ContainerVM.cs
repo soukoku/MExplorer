@@ -99,5 +99,7 @@ namespace MExplorer
         public AutoDisposeObservableCollection<ContainerVM> ContainerChildren { get; private set; }
 
         public AutoDisposeObservableCollection<ItemVM> SingleChildren { get; private set; }
+
+        public virtual IEnumerable<MetaColumnInfo> KnownMetaData { get { return Enumerable.Empty<MetaColumnInfo>(); } }
     }
 }
