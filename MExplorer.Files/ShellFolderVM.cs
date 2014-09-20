@@ -53,7 +53,7 @@ namespace MExplorer.Files
         }
 
 
-        protected override ImageSource GetIcon(IconSize size)
+        protected override ImageSource OnGetIcon(IconSize size)
         {
             return Util.GetIcon(Folder, size);
         }

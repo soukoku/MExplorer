@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using MExplorer.Assets;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,6 +12,9 @@ using System.Windows.Media;
 
 namespace MExplorer
 {
+    /// <summary>
+    /// Represents a basic hierarchy item.
+    /// </summary>
     public class ItemVM : ViewModelBase, IDisposable
     {
         public ItemVM(IItemProvider provider, ContainerVM parent, string name, bool canRename)
@@ -71,26 +75,59 @@ namespace MExplorer
 
         public MetaData MetaData { get; private set; }
 
-        protected virtual ImageSource GetIcon(IconSize size)
+        #region icon
+
+        /// <summary>
+        /// Called when icon is requested.
+        /// </summary>
+        /// <param name="size">The size.</param>
+        /// <returns></returns>
+        protected virtual ImageSource OnGetIcon(IconSize size)
         {
             switch (size)
             {
                 case IconSize.ExtraLarge:
-                    return DefaultIcons.ItemExtraLarge;
+                    return DefaultIcons.ExtraLargeItem;
                 case IconSize.Large:
-                    return DefaultIcons.ItemLarge;
+                    return DefaultIcons.LargeItem;
                 case IconSize.Medium:
-                    return DefaultIcons.ItemMedium;
+                    return DefaultIcons.MediumItem;
                 case IconSize.Small:
-                    return DefaultIcons.ItemSmall;
+                    return DefaultIcons.SmallItem;
             }
             return null;
         }
 
-        public ImageSource SmallIcon { get { return GetIcon(IconSize.Small); } }
-        public ImageSource MediumIcon { get { return GetIcon(IconSize.Medium); } }
-        public ImageSource LargeIcon { get { return GetIcon(IconSize.Large); } }
-        public ImageSource ExtraLargeIcon { get { return GetIcon(IconSize.ExtraLarge); } }
+        /// <summary>
+        /// Gets the small icon.
+        /// </summary>
+        /// <value>
+        /// The small icon.
+        /// </value>
+        public ImageSource SmallIcon { get { return OnGetIcon(IconSize.Small); } }
+        /// <summary>
+        /// Gets the medium icon.
+        /// </summary>
+        /// <value>
+        /// The medium icon.
+        /// </value>
+        public ImageSource MediumIcon { get { return OnGetIcon(IconSize.Medium); } }
+        /// <summary>
+        /// Gets the large icon.
+        /// </summary>
+        /// <value>
+        /// The large icon.
+        /// </value>
+        public ImageSource LargeIcon { get { return OnGetIcon(IconSize.Large); } }
+        /// <summary>
+        /// Gets the extra large icon.
+        /// </summary>
+        /// <value>
+        /// The extra large icon.
+        /// </value>
+        public ImageSource ExtraLargeIcon { get { return OnGetIcon(IconSize.ExtraLarge); } }
+
+        #endregion
 
         public override string ToString()
         {
@@ -123,7 +160,7 @@ namespace MExplorer
 
         protected virtual void OnDisposeManaged()
         {
-
+            Cleanup();
         }
 
         protected virtual void OnDisposeNative()

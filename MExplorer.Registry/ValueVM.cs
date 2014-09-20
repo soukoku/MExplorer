@@ -17,7 +17,7 @@ namespace MExplorer.Registry
 
         public RegistryValueKind Kind { get; private set; }
 
-        protected override System.Windows.Media.ImageSource GetIcon(IconSize size)
+        protected override System.Windows.Media.ImageSource OnGetIcon(IconSize size)
         {
             if (size == IconSize.Small)
                 switch (Kind)
@@ -30,7 +30,7 @@ namespace MExplorer.Registry
                     default:
                         return ImageAssets.StringSmall;
                 }
-            return base.GetIcon(size);
+            return base.OnGetIcon(size);
         }
     }
 }

@@ -18,7 +18,7 @@ namespace MExplorer.Files
 
         public ShellFile File { get; private set; }
 
-        protected override ImageSource GetIcon(IconSize size)
+        protected override ImageSource OnGetIcon(IconSize size)
         {
             return Util.GetIcon(File, size);
         }

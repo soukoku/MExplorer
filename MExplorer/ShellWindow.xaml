@@ -58,7 +58,7 @@
                     <StackPanel Orientation="Horizontal" Margin="2">
                         <Image Source="{Binding SmallIcon}" Margin="2 0"></Image>
                         <TextBlock x:Name="nameDisp" Text="{Binding Name}"></TextBlock>
-                        <TextBlock x:Name="nameDisp2" Text="{Binding AppendText}" Margin="4 0 0 0"></TextBlock>
+                        <TextBlock x:Name="nameDisp2" Text="{Binding BadgeText}" Margin="4 0 0 0"></TextBlock>
                         <TextBox x:Name="nameEdit" Text="{Binding Name, UpdateSourceTrigger=LostFocus}"
                                  Visibility="Collapsed"></TextBox>
                     </StackPanel>

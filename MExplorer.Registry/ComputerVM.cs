@@ -26,7 +26,7 @@ namespace MExplorer.Registry
 
         //ShellObject _shell;
 
-        protected override ImageSource GetIcon(IconSize size)
+        protected override ImageSource OnGetIcon(IconSize size)
         {
             switch (size)
             {
@@ -42,7 +42,7 @@ namespace MExplorer.Registry
             return null;
         }
 
-        public override string AppendText
+        public override string BadgeText
         {
             get
             {
