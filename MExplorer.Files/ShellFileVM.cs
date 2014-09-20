@@ -5,12 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Windows.Media;
 
-namespace MExplorer.Files.SystemItems
+namespace MExplorer.Files
 {
     class ShellFileVM : ItemVM
     {
-        public ShellFileVM(IItemProvider provider, string parsingName)
-            : base(provider, GetName(parsingName), false)
+        public ShellFileVM(IItemProvider provider, ContainerVM parent, string parsingName)
+            : base(provider, parent, GetName(parsingName), false)
         {
             ParsingName = parsingName;
         }

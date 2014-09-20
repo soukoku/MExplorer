@@ -1,5 +1,4 @@
-﻿using MExplorer.Files.SystemItems;
-using Microsoft.WindowsAPICodePack.Shell;
+﻿using Microsoft.WindowsAPICodePack.Shell;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +16,7 @@ namespace MExplorer.Files
             {
                 using (var sh = KnownFolders.Desktop)
                 {
-                    return new ShellFolderVM(this, sh.ParsingName) { IsExpanded = true };
+                    return new ShellFolderVM(this, null, sh.ParsingName) { IsExpanded = true };
                 }
             }
         }
@@ -36,7 +35,7 @@ namespace MExplorer.Files
                         var file = sub as ShellFile;
                         if (file != null)
                         {
-                            list.Add(new ShellFileVM(mine.Provider, sub.ParsingName));
+                            list.Add(new ShellFileVM(mine.Provider, mine, sub.ParsingName));
                         }
                         sub.Dispose();
                     }
@@ -60,7 +59,7 @@ namespace MExplorer.Files
                         var folder = sub as ShellFolder;
                         if (folder != null)
                         {
-                            list.Add(new ShellFolderVM(mine.Provider, sub.ParsingName));
+                            list.Add(new ShellFolderVM(mine.Provider, mine, sub.ParsingName));
                         }
                         sub.Dispose();
                     }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Windows.Data;
@@ -10,18 +11,29 @@ namespace MExplorer
 {
     public class ContainerVM : ItemVM
     {
-        public ContainerVM(IItemProvider provider, string name, bool canRename)
-            : base(provider, name, canRename)
-        {
-            ContainerChildren = new ObservableCollection<ContainerVM>();
-            ContainerChildren.Add(this); // dummy self for expander
+        public static readonly ContainerVM PLACE_HOLDER = new ContainerVM(null, null, null, false);
 
-            SingleChildren = new ObservableCollection<ItemVM>();
+
+        public ContainerVM(IItemProvider provider, ContainerVM parent, string name, bool canRename)
+            : base(provider, parent, name, canRename)
+        {
+            ContainerChildren = new AutoDisposeObservableCollection<ContainerVM>();
+            ContainerChildren.Add(PLACE_HOLDER); // dummy self for expander
+
+            SingleChildren = new AutoDisposeObservableCollection<ItemVM>();
+            
             AllChildren = new CompositeCollection();
-            AllChildren.Add(new CollectionContainer { Collection = ContainerChildren });
+            if (IncludeContainersInAll)
+            {
+                AllChildren.Add(new CollectionContainer { Collection = ContainerChildren });
+            }
             AllChildren.Add(new CollectionContainer { Collection = SingleChildren });
 
         }
+
+        public virtual bool IncludeContainersInAll { get { return true; } }
+
+        public virtual string AppendText { get { return null; } }
 
         private bool _isExpanded;
 
@@ -41,7 +53,7 @@ namespace MExplorer
 
         public virtual void LoadContainers(bool refresh)
         {
-            if (refresh || ContainerChildren.Count == 0 || ContainerChildren.FirstOrDefault() == this)
+            if (refresh || ContainerChildren.Count == 0 || ContainerChildren.FirstOrDefault() == PLACE_HOLDER)
             {
                 ContainerChildren.Clear();
                 foreach (var c in Provider.GetContainerChildren(this))
@@ -84,8 +96,8 @@ namespace MExplorer
 
         public CompositeCollection AllChildren { get; private set; }
 
-        public ObservableCollection<ContainerVM> ContainerChildren { get; private set; }
+        public AutoDisposeObservableCollection<ContainerVM> ContainerChildren { get; private set; }
 
-        public ObservableCollection<ItemVM> SingleChildren { get; private set; }
+        public AutoDisposeObservableCollection<ItemVM> SingleChildren { get; private set; }
     }
 }

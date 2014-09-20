@@ -18,7 +18,7 @@ namespace MExplorer.ViewModels
             {
                 for (int i = 0; i < 10; i++)
                 {
-                    RootContainers.Add(new ContainerVM(null, "Sample " + i, false));
+                    RootContainers.Add(new ContainerVM(null, null, "Sample " + i, false));
                 }
             }
             else

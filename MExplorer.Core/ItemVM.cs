@@ -11,16 +11,19 @@ using System.Windows.Media;
 
 namespace MExplorer
 {
-    public class ItemVM : ViewModelBase
+    public class ItemVM : ViewModelBase, IDisposable
     {
-        public ItemVM(IItemProvider provider, string name, bool canRename)
+        public ItemVM(IItemProvider provider, ContainerVM parent, string name, bool canRename)
         {
             Provider = provider;
+            Parent = parent;
             _name = name;
             CanRename = canRename;
         }
 
         public IItemProvider Provider { get; private set; }
+
+        public ContainerVM Parent { get; private set; }
 
         private string _name;
 
@@ -90,5 +93,41 @@ namespace MExplorer
         {
             return Name;
         }
+
+        #region IDisposable Members
+
+        public bool IsDisposed { get; private set; }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+        ~ItemVM()
+        {
+            Dispose(false);
+        }
+
+        private void Dispose(bool disposing)
+        {
+            IsDisposed = true;
+            if (disposing)
+            {
+                OnDisposeManaged();
+            }
+            OnDisposeNative();
+        }
+
+        protected virtual void OnDisposeManaged()
+        {
+
+        }
+
+        protected virtual void OnDisposeNative()
+        {
+
+        }
+
+        #endregion
     }
 }

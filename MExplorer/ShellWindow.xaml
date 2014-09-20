@@ -20,7 +20,8 @@
 
         <TreeView x:Name="theTree" Grid.Column="0" Grid.Row="1"
                   ItemsSource="{Binding RootContainers}"
-                  SelectedItemChanged="theTree_SelectedItemChanged">
+                  SelectedItemChanged="theTree_SelectedItemChanged"
+                  VirtualizingStackPanel.IsVirtualizing="True">
             <TreeView.ItemContainerStyle>
                 <Style TargetType="TreeViewItem">
                     <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}"></Setter>
@@ -31,12 +32,14 @@
                     <StackPanel Orientation="Horizontal" Margin="2">
                         <Image Source="{Binding SmallIcon}" Margin="2 0"></Image>
                         <TextBlock x:Name="nameDisp" Text="{Binding Name}"></TextBlock>
+                        <TextBlock x:Name="nameDisp2" Text="{Binding AppendText}" Margin="4 0 0 0"></TextBlock>
                         <TextBox x:Name="nameEdit" Text="{Binding Name, UpdateSourceTrigger=LostFocus}"
                                  Visibility="Collapsed"></TextBox>
                     </StackPanel>
                     <HierarchicalDataTemplate.Triggers>
                         <DataTrigger Binding="{Binding IsRenaming}" Value="true">
                             <Setter TargetName="nameDisp" Property="Visibility" Value="Collapsed"></Setter>
+                            <Setter TargetName="nameDisp2" Property="Visibility" Value="Collapsed"></Setter>
                             <Setter TargetName="nameEdit" Property="Visibility" Value="Visible"></Setter>
                         </DataTrigger>
                     </HierarchicalDataTemplate.Triggers>

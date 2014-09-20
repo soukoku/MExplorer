@@ -5,13 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Windows.Media;
 
-namespace MExplorer.Files.SystemItems
+namespace MExplorer.Files
 {
     class ShellFolderVM : ContainerVM
     {
 
-        public ShellFolderVM(IItemProvider provider, string parsingName)
-            : base(provider, GetName(parsingName), false)
+        public ShellFolderVM(IItemProvider provider, ContainerVM parent, string parsingName)
+            : base(provider, parent, GetName(parsingName), false)
         {
             ParsingName = parsingName;
         }
@@ -34,14 +34,14 @@ namespace MExplorer.Files.SystemItems
                         var folder = sub as ShellFolder;
                         if (folder != null)
                         {
-                            ContainerChildren.Add(new ShellFolderVM(Provider, sub.ParsingName));
+                            ContainerChildren.Add(new ShellFolderVM(Provider, this, sub.ParsingName));
                         }
                         else
                         {
                             var file = sub as ShellFile;
                             if (file != null)
                             {
-                                SingleChildren.Add(new ShellFileVM(Provider, sub.ParsingName));
+                                SingleChildren.Add(new ShellFileVM(Provider, this, sub.ParsingName));
                             }
                         }
                         sub.Dispose();
