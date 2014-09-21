@@ -121,7 +121,14 @@
     </Compile>
     <Compile Include="Code\ProviderLoader.cs" />
     <Compile Include="Converters\AppTitleConverter.cs" />
+    <Compile Include="NavigationBar.xaml.cs">
+      <DependentUpon>NavigationBar.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\ShellVM.cs" />
+    <Page Include="NavigationBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ShellWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
