@@ -5,14 +5,9 @@
         xmlns:vm="clr-namespace:MExplorer.ViewModels"
         x:Name="theWindow"
         DataContext="{StaticResource Shell}"
-        Icon="{Binding SelectedProvider.SelectedContainer.MediumIcon}"
+        Icon="{Binding SelectedProvider.SelectedContainer.MediumIcon, Converter={StaticResource AppIcon}}"
         Title="{Binding SelectedProvider.SelectedContainer, Converter={StaticResource AppTitleConv}}" 
         Height="640" Width="960">
-    <Window.Resources>
-        <!--<DataTemplate DataType="{x:Type vm:ProviderVM}">
-            <views:ProviderView />
-        </DataTemplate>-->
-    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
@@ -21,11 +16,6 @@
 
         <TabControl x:Name="theTabs" Grid.Row="1"
                     SelectionChanged="theTabs_SelectionChanged">
-            <!--<TabControl.ItemTemplate>
-                <DataTemplate>
-                    <ContentPresenter Content="{Binding Name}"></ContentPresenter>
-                </DataTemplate>
-            </TabControl.ItemTemplate>-->
         </TabControl>
     </Grid>
 </Window>
