@@ -32,7 +32,18 @@ namespace MExplorer.ViewModels
 
         public ObservableCollection<ProviderVM> Providers { get; private set; }
 
-        //public int HackToRememberTab { get; set; }
+        private ProviderVM _selectedProv;
+
+        public ProviderVM SelectedProvider
+        {
+            get { return _selectedProv; }
+            set
+            {
+                _selectedProv = value;
+                RaisePropertyChanged(() => SelectedProvider);
+            }
+        }
+
 
     }
 }

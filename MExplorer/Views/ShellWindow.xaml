@@ -3,17 +3,15 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:views="clr-namespace:MExplorer.Views"
         xmlns:vm="clr-namespace:MExplorer.ViewModels"
-        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
-        xmlns:xcad="http://schemas.xceed.com/wpf/xaml/avalondock"
         x:Name="theWindow"
         DataContext="{StaticResource Shell}"
-        Icon="{Binding ElementName=theTabs, Path=SelectedItem.SelectedContainer.MediumIcon}"
-        Title="{Binding ElementName=theTabs, Path=SelectedItem.SelectedContainer, Converter={StaticResource AppTitleConv}}" 
+        Icon="{Binding SelectedProvider.SelectedContainer.MediumIcon}"
+        Title="{Binding SelectedProvider.SelectedContainer, Converter={StaticResource AppTitleConv}}" 
         Height="640" Width="960">
     <Window.Resources>
-        <DataTemplate DataType="{x:Type vm:ProviderVM}">
+        <!--<DataTemplate DataType="{x:Type vm:ProviderVM}">
             <views:ProviderView />
-        </DataTemplate>
+        </DataTemplate>-->
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -21,12 +19,13 @@
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <TabControl x:Name="theTabs" Grid.Row="1" ItemsSource="{Binding Providers}">
-            <TabControl.ItemTemplate>
+        <TabControl x:Name="theTabs" Grid.Row="1"
+                    SelectionChanged="theTabs_SelectionChanged">
+            <!--<TabControl.ItemTemplate>
                 <DataTemplate>
                     <ContentPresenter Content="{Binding Name}"></ContentPresenter>
                 </DataTemplate>
-            </TabControl.ItemTemplate>
+            </TabControl.ItemTemplate>-->
         </TabControl>
     </Grid>
 </Window>
