@@ -27,7 +27,10 @@ namespace MExplorer.Files
         public override void DoDefaultAction()
         {
             // todo: this is wrong, should use default shell action.
-            using (var p = Process.Start(File.ParsingName)) { }
+            if (System.IO.File.Exists(File.ParsingName))
+            {
+                using (var p = Process.Start(File.ParsingName)) { }
+            }
         }
 
         protected override void OnDisposeManaged()

@@ -6,21 +6,30 @@
              xmlns:modern="http://modernwpf"
              StartupUri="Views/ShellWindow.xaml">
     <Application.Resources>
-        
-        <modern:AppIconImageConverter x:Key="AppIcon"/>
-        
-        
-        <vm:ShellVM x:Key="Shell"></vm:ShellVM>
-        <conv:AppTitleConverter x:Key="AppTitleConv"></conv:AppTitleConverter>
-        
-        <Style x:Key="LeftAlignColHeader" TargetType="GridViewColumnHeader">
-            <Setter Property="HorizontalContentAlignment" Value="Left"/>
-        </Style>
-        <Style x:Key="CenterAlignColHeader" TargetType="GridViewColumnHeader">
-            <Setter Property="HorizontalContentAlignment" Value="Center"/>
-        </Style>
-        <Style x:Key="RightAlignColHeader" TargetType="GridViewColumnHeader">
-            <Setter Property="HorizontalContentAlignment" Value="Right"/>
-        </Style>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/ModernWPF;component/Themes/ModernBase.xaml" />
+                <ResourceDictionary Source="/ModernWPF;component/Themes/ModernLight.xaml" />
+                <ResourceDictionary Source="/ModernWPF;component/Themes/ModernStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <modern:AppIconImageConverter x:Key="AppIcon"/>
+
+
+            <vm:ShellVM x:Key="Shell"></vm:ShellVM>
+            <conv:AppTitleConverter x:Key="AppTitleConv"></conv:AppTitleConverter>
+
+            <Style x:Key="LeftAlignColHeader" TargetType="GridViewColumnHeader" BasedOn="{StaticResource ModernGridViewColumnHeader}">
+                <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            </Style>
+            <Style x:Key="CenterAlignColHeader" TargetType="GridViewColumnHeader" BasedOn="{StaticResource ModernGridViewColumnHeader}">
+                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            </Style>
+            <Style x:Key="RightAlignColHeader" TargetType="GridViewColumnHeader" BasedOn="{StaticResource ModernGridViewColumnHeader}">
+                <Setter Property="HorizontalContentAlignment" Value="Right"/>
+            </Style>
+            
+            <Style x:Key="ShellWindow" TargetType="Window" BasedOn="{StaticResource ModernWindow}"></Style>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

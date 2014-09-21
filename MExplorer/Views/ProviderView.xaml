@@ -8,7 +8,7 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
         <GridView x:Key="GridView">
-            <GridViewColumn Header="Name" Width="250" HeaderContainerStyle="{StaticResource LeftAlignColHeader}">
+            <GridViewColumn Header="Name" Width="250">
                 <GridViewColumn.CellTemplate>
                     <DataTemplate>
                         <DockPanel>
@@ -34,7 +34,7 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <ToolBar></ToolBar>
+        <!--<ToolBar></ToolBar>-->
 
         <views:NavigationBar Grid.Row="1" Grid.ColumnSpan="3"></views:NavigationBar>
 
@@ -44,14 +44,14 @@
                   
                   VirtualizingStackPanel.IsVirtualizing="True">
             <TreeView.ItemContainerStyle>
-                <Style TargetType="TreeViewItem">
+                <Style TargetType="TreeViewItem" BasedOn="{StaticResource ModernTreeViewItem}">
                     <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}"></Setter>
                     <Setter Property="IsSelected" Value="{Binding IsTreeSelected, Mode=TwoWay}"></Setter>
                 </Style>
             </TreeView.ItemContainerStyle>
             <TreeView.ItemTemplate>
                 <HierarchicalDataTemplate ItemsSource="{Binding ContainerChildren}">
-                    <StackPanel Orientation="Horizontal" Margin="2">
+                    <StackPanel Orientation="Horizontal">
                         <Image Source="{Binding SmallIcon}" Margin="0 0 2 0"></Image>
                         <TextBlock x:Name="nameDisp" Text="{Binding Name}"></TextBlock>
                         <TextBlock x:Name="nameDisp2" Text="{Binding BadgeText}" Margin="4 0 0 0"></TextBlock>
@@ -77,7 +77,7 @@
                   ItemsSource="{Binding AllChildren}"
                   View="{StaticResource GridView}">
             <ListView.ItemContainerStyle>
-                <Style TargetType="ListViewItem">
+                <Style TargetType="ListViewItem" BasedOn="{StaticResource ModernListViewItem}">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
                     <EventSetter Event="MouseDoubleClick" Handler="ListItem_DoubleClick"/>
                     <EventSetter Event="KeyDown" Handler="ListItem_KeyDown"/>

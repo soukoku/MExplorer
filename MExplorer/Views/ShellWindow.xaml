@@ -7,15 +7,16 @@
         DataContext="{StaticResource Shell}"
         Icon="{Binding SelectedProvider.SelectedContainer.MediumIcon, Converter={StaticResource AppIcon}}"
         Title="{Binding SelectedProvider.SelectedContainer, Converter={StaticResource AppTitleConv}}" 
-        Height="640" Width="960">
+        Height="640" Width="960"
+        Style="{StaticResource ShellWindow}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <TabControl x:Name="theTabs" Grid.Row="1"
-                    SelectionChanged="theTabs_SelectionChanged">
+        <TabControl x:Name="theTabs" Grid.Row="1" SelectionChanged="theTabs_SelectionChanged"
+                    Style="{StaticResource ModernTabControl}" >
         </TabControl>
     </Grid>
 </Window>
