@@ -11,6 +11,14 @@ namespace MExplorer
     public interface IItemProvider
     {
         /// <summary>
+        /// Gets the name of the provider.
+        /// </summary>
+        /// <value>
+        /// The name.
+        /// </value>
+        string Name { get; }
+
+        /// <summary>
         /// Gets the root container.
         /// </summary>
         /// <value>

@@ -129,6 +129,11 @@ namespace MExplorer
 
         #endregion
 
+        /// <summary>
+        /// Performs the default action on this item.
+        /// </summary>
+        public virtual void DoDefaultAction() { }
+
         public override string ToString()
         {
             return Name;

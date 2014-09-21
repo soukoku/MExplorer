@@ -13,32 +13,37 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MExplorer
+namespace MExplorer.Views
 {
     /// <summary>
-    /// Interaction logic for ShellWindow.xaml
+    /// Interaction logic for ProviderView.xaml
     /// </summary>
-    public partial class ShellWindow : Window
+    public partial class ProviderView : UserControl
     {
         GridView _gridView;
-        public ShellWindow()
+        public ProviderView()
         {
             InitializeComponent();
             _gridView = this.Resources["GridView"] as GridView;
+            this.DataContextChanged += ProviderView_DataContextChanged;
+        }
+
+        void ProviderView_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            var d = this.DataContext;
         }
 
         private void theTree_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            var shell = this.DataContext as ShellVM;
-            if (shell != null)
+            var vm = this.DataContext as ProviderVM;
+            if (vm != null)
             {
-                shell.SelectedContainer = e.NewValue as ContainerVM;
+                vm.SelectedContainer = e.NewValue as ContainerVM;
             }
         }
 
-        string _columnXaml =
-@"<GridViewColumn Header=""{Binding MetaData[{0}].Name}""  Width=""100""
-DisplayMemberBinding=""{Binding MetaData[{0}].FormattedValue}""/>";
+
+        #region list view
 
         private void theView_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
@@ -79,5 +84,42 @@ DisplayMemberBinding=""{Binding MetaData[{0}].FormattedValue}""/>";
             }
         }
 
+        protected void ListItem_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.Key)
+            {
+                case Key.Enter:
+                    HandleListItemAction(sender);
+                    break;
+            }
+        }
+        protected void ListItem_DoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            HandleListItemAction(sender);
+        }
+
+        private void HandleListItemAction(object sender)
+        {
+            var lvi = sender as ListViewItem;
+            if (lvi != null)
+            {
+                var container = lvi.DataContext as ContainerVM;
+                if (container != null)
+                {
+                    container.Parent.IsExpanded = true;
+                    container.IsTreeSelected = true;
+                }
+                else
+                {
+                    var item = lvi.DataContext as ItemVM;
+                    if (item != null)
+                    {
+                        item.DoDefaultAction();
+                    }
+                }
+            }
+        }
+
+        #endregion
     }
 }

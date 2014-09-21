@@ -28,7 +28,7 @@ namespace MExplorer
             ContainerChildren.Add(PLACE_HOLDER); // dummy self for expander
 
             SingleChildren = new AutoDisposeObservableCollection<ItemVM>();
-            
+
             AllChildren = new CompositeCollection();
             if (IncludeContainersInAll)
             {
@@ -42,6 +42,19 @@ namespace MExplorer
 
         public virtual string BadgeText { get { return null; } }
 
+        private bool _isTreeSelected;
+
+        public bool IsTreeSelected
+        {
+            get { return _isTreeSelected; }
+            set
+            {
+                _isTreeSelected = value;
+                RaisePropertyChanged(() => IsTreeSelected);
+            }
+        }
+
+
         private bool _isExpanded;
 
         public bool IsExpanded
@@ -52,7 +65,7 @@ namespace MExplorer
                 _isExpanded = value;
                 if (value)
                 {
-                    LoadContainers(true);
+                    LoadContainers(false);
                 }
                 RaisePropertyChanged(() => IsExpanded);
             }

@@ -42,13 +42,13 @@ namespace MExplorer.Registry
             return null;
         }
 
-        public override string BadgeText
-        {
-            get
-            {
-                return "[registry]";
-            }
-        }
+        //public override string BadgeText
+        //{
+        //    get
+        //    {
+        //        return "[registry]";
+        //    }
+        //}
 
         public bool IsRemote { get; private set; }
 

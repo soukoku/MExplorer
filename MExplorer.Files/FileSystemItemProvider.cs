@@ -10,6 +10,8 @@ namespace MExplorer.Files
     {
         #region IItemProvider Members
 
+        public string Name { get { return "File system"; } }
+
         public ContainerVM Root
         {
             get

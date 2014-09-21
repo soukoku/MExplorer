@@ -3,9 +3,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:vm="clr-namespace:MExplorer.ViewModels"
              xmlns:conv="clr-namespace:MExplorer.Converters"
-             StartupUri="ShellWindow.xaml">
+             StartupUri="Views/ShellWindow.xaml">
     <Application.Resources>
         <vm:ShellVM x:Key="Shell"></vm:ShellVM>
         <conv:AppTitleConverter x:Key="AppTitleConv"></conv:AppTitleConverter>
+        
+        <Style x:Key="LeftAlignColHeader" TargetType="GridViewColumnHeader">
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        </Style>
+        <Style x:Key="CenterAlignColHeader" TargetType="GridViewColumnHeader">
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        </Style>
+        <Style x:Key="RightAlignColHeader" TargetType="GridViewColumnHeader">
+            <Setter Property="HorizontalContentAlignment" Value="Right"/>
+        </Style>
     </Application.Resources>
 </Application>

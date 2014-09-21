@@ -10,12 +10,13 @@ namespace MExplorer.Registry
     class RegistryItemProvider : IItemProvider
     {
         #region IItemProvider Members
+        public string Name { get { return "Registry"; } }
 
         public ContainerVM Root
         {
             get
             {
-                return new ComputerVM(this);
+                return new ComputerVM(this) { IsExpanded = true };
             }
         }
 

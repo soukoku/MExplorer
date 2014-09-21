@@ -13,42 +13,26 @@ namespace MExplorer.ViewModels
     {
         public ShellVM()
         {
-            RootContainers = new ObservableCollection<ContainerVM>();
+            Providers = new ObservableCollection<ProviderVM>();
             if (IsInDesignMode)
             {
-                for (int i = 0; i < 10; i++)
-                {
-                    RootContainers.Add(new ContainerVM(null, null, "Sample " + i, false));
-                }
+                //for (int i = 0; i < 10; i++)
+                //{
+                //    Providers.Add(new ContainerVM(null, null, "Sample " + i, false));
+                //}
             }
             else
             {
                 foreach (var p in ProviderLoader.FindProviders())
                 {
-                    RootContainers.Add(p.Root);
+                    Providers.Add(new ProviderVM(p));
                 }
             }
         }
 
-        public ObservableCollection<ContainerVM> RootContainers { get; private set; }
+        public ObservableCollection<ProviderVM> Providers { get; private set; }
 
-        private ContainerVM _selectedContainer;
-
-        public ContainerVM SelectedContainer
-        {
-            get { return _selectedContainer; }
-            set
-            {
-                _selectedContainer = value;
-                RaisePropertyChanged(() => SelectedContainer);
-
-                if (value != null)
-                {
-                    value.LoadContainers(false);
-                    value.LoadSingles(false);
-                }
-            }
-        }
+        //public int HackToRememberTab { get; set; }
 
     }
 }

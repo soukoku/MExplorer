@@ -12,7 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MExplorer
+namespace MExplorer.Views
 {
     /// <summary>
     /// Interaction logic for NavigationBar.xaml
