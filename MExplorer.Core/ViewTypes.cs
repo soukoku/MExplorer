@@ -8,23 +8,24 @@ namespace MExplorer
     /// <summary>
     /// Indicates the UI view type. These map to the corresponding <see cref="IconSize"/>.
     /// </summary>
+    [Flags]
     public enum ViewTypes
     {
         /// <summary>
         /// Grid view.
         /// </summary>
-        Details,
+        Details = 1,
         /// <summary>
         /// The medium thumb view.
         /// </summary>
-        MediumThumb,
+        MediumThumb = 2,
         /// <summary>
         /// The large thumb view.
         /// </summary>
-        LargeThumb,
+        LargeThumb = 4,
         /// <summary>
         /// The extra large thumbs view.
         /// </summary>
-        ExtraLargeThumb,
+        ExtraLargeThumb = 8,
     }
 }

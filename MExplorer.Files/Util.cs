@@ -1,8 +1,8 @@
 ﻿using MExplorer.Converters;
 using Microsoft.WindowsAPICodePack.Shell;
+using Microsoft.WindowsAPICodePack.Shell.PropertySystem;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Media;
@@ -15,19 +15,17 @@ namespace MExplorer.Files
         {
             if (shell.IsFileSystemObject)
             {
-                var di = new DirectoryInfo(shell.GetDisplayName(DisplayNameType.FileSystemPath));
-                data.Add(new MetaEntry { Name = FileMetaData.ModifiedDate.Name, Value = di.LastWriteTimeUtc });
-                data.Add(new MetaEntry { Name = FileMetaData.Type.Name, Value = "File Folder" });
+                data.Add(new MetaEntry { Name = FileMetaData.ModifiedDate.Name, Value = shell.Properties.GetProperty(SystemProperties.System.DateModified).ValueAsObject });
+                data.Add(new MetaEntry { Name = FileMetaData.Type.Name, Value = shell.Properties.GetProperty(SystemProperties.System.ItemTypeText).ValueAsObject });
             }
         }
         internal static void FillCommonData(ShellFile shell, MetaData data)
         {
             if (shell.IsFileSystemObject)
             {
-                var fi = new FileInfo(shell.GetDisplayName(DisplayNameType.FileSystemPath));
-                data.Add(new MetaEntry { Name = FileMetaData.ModifiedDate.Name, Value = fi.LastWriteTimeUtc });
-                data.Add(new MetaEntry { Name = FileMetaData.Type.Name, Value = "File" });
-                data.Add(new MetaEntry { Name = FileMetaData.Size.Name, Value = fi.Length });
+                data.Add(new MetaEntry { Name = FileMetaData.ModifiedDate.Name, Value = shell.Properties.GetProperty(SystemProperties.System.DateModified).ValueAsObject });
+                data.Add(new MetaEntry { Name = FileMetaData.Type.Name, Value = shell.Properties.GetProperty(SystemProperties.System.ItemTypeText).ValueAsObject });
+                data.Add(new MetaEntry { Name = FileMetaData.Size.Name, Value = shell.Properties.GetProperty(SystemProperties.System.Size).ValueAsObject });
             }
         }
 

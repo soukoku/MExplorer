@@ -29,9 +29,9 @@ namespace MExplorer.Converters
             {
                 if (parameter != null)
                 {
-                    return ((DateTime)value).ToLocalTime().ToString(parameter.ToString());
+                    return ((DateTime)value).ToLocalTime().ToString(parameter.ToString(), culture);
                 }
-                return ((DateTime)value).ToLocalTime();
+                return ((DateTime)value).ToLocalTime().ToString(culture.DateTimeFormat.ShortDatePattern + " " + culture.DateTimeFormat.ShortTimePattern);
             }
             return value;
         }

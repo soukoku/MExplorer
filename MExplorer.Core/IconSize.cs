@@ -13,18 +13,18 @@ namespace MExplorer
         /// <summary>
         /// 16x16 size.
         /// </summary>
-        Small,
+        Small = 1,
         /// <summary>
         /// 32x32 size.
         /// </summary>
-        Medium,
+        Medium = 2,
         /// <summary>
         /// Mystery size.
         /// </summary>
-        Large,
+        Large = 4,
         /// <summary>
         /// 256x256 size.
         /// </summary>
-        ExtraLarge
+        ExtraLarge = 8
     }
 }
