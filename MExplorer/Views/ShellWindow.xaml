@@ -8,6 +8,7 @@
         Icon="{Binding SelectedProvider.SelectedContainer.MediumIcon, Converter={StaticResource AppIcon}}"
         Title="{Binding SelectedProvider.SelectedContainer, Converter={StaticResource AppTitleConv}}" 
         Height="640" Width="960"
+        ResizeMode="CanResizeWithGrip"
         Style="{StaticResource ShellWindow}">
     <Grid>
         <Grid.RowDefinitions>
@@ -16,7 +17,7 @@
         </Grid.RowDefinitions>
 
         <TabControl x:Name="theTabs" Grid.Row="1" SelectionChanged="theTabs_SelectionChanged"
-                    Style="{StaticResource ModernTabControl}" >
+                    Style="{StaticResource ModernTabControl}">
         </TabControl>
     </Grid>
 </Window>

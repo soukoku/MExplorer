@@ -4,11 +4,12 @@
              xmlns:vm="clr-namespace:MExplorer.ViewModels"
              xmlns:conv="clr-namespace:MExplorer.Converters"
              xmlns:modern="http://modernwpf"
+             xmlns:s="clr-namespace:System;assembly=mscorlib"
              StartupUri="Views/ShellWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/ModernWPF;component/Themes/ModernBase.xaml" />
+                <ResourceDictionary Source="/ModernWPF;component/Themes/ModernBaseDesktop.xaml" />
                 <ResourceDictionary Source="/ModernWPF;component/Themes/ModernLight.xaml" />
                 <ResourceDictionary Source="/ModernWPF;component/Themes/ModernStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
@@ -29,7 +30,7 @@
                 <Setter Property="HorizontalContentAlignment" Value="Right"/>
             </Style>
             
-            <Style x:Key="ShellWindow" TargetType="Window" BasedOn="{StaticResource ModernWindow}"></Style>
+            <Style x:Key="ShellWindow" TargetType="Window" BasedOn="{StaticResource ModernWindowV2}"></Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
