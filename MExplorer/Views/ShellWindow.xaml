@@ -17,6 +17,7 @@
         </Grid.RowDefinitions>
 
         <TabControl x:Name="theTabs" Grid.Row="1" SelectionChanged="theTabs_SelectionChanged"
+                    Padding="10 0 0 4"
                     Style="{StaticResource ModernTabControl}">
         </TabControl>
     </Grid>
